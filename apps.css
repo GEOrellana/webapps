@@ -1,0 +1,285 @@
+/**
+ * Estilo GeOrellana para los webapps y las páginas de las estaciones meteorológicas.
+ *
+ * basado en el estilo de GeoNetwork 3,
+ * del tema Lumen de Bootstrap,
+ * el ejemplo de GIBS https://github.com/nasa-gibs/gibs-web-examples
+ * y en ejemplos de OpenLayers 3.
+ *
+ * Sientate libre en usar lo que quieras, es software libre.
+*/
+
+body {
+	padding: 55px 0 0 0;
+	border: 0;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px !important;
+	color: #333;
+   height: 100%;
+}       
+.container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h4, .h4, h5, .h5, h6, .h6 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+table a:not(.btn), .table a:not(.btn) {
+    text-decoration: none;
+}
+a {
+    text-decoration: none;
+    color: #903d99;
+}
+
+/* La barra de navegación */
+.navbar {
+	padding: 1px 36px 0px 36px;
+	border-width: 0px 0px 5px 0px;
+	border-radius: 0px;
+	padding-top: 1px;
+	border-image: url(../../img/logos/pachakutic.jpg) 5;
+}
+.navbar-default {
+	background-color: #F8F8F8;
+	border-color: #E7E7E7;
+}
+.navbar-default.navbar-nav > li > a {
+	height: 53px;
+	color: #777;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+ 	color: #555;
+	background-color: #E7E7E7;
+}
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+    color: #555;
+    background-color: #E7E7E7;
+    border-radius: 4px;
+    margin: 0px 5px 0px 5px;
+}
+.gn-logo {
+	max-height: 23px;
+	margin-right: 4px;
+}
+
+/* Los botones */
+.btn {
+	font-size: 16px;
+}
+.btn-primary {
+	color: #FFF;
+	background-color: #903D99;
+   border-color: #00419B;
+}
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-group.open .dropdown-toggle.btn-primary {
+	background-color: #783480;
+   border-color: #00419b;
+}
+.dropdown-menu > li > a {
+	color: #777;
+}
+
+
+/*****************************************************
+Estilo específico para la página inicial 
+******************************************************/
+
+/*El mapa OpenLayers */
+#map {
+	background-color: white;
+	position: absolute;
+	top: 55px;
+	width: 100%;
+	height: calc(100% - 55px);
+	z-index: -1;
+}
+.ol-zoom button {
+	background: rgba(40, 40, 40, 0.8);
+}
+.ol-zoom button:hover {
+	background: #903D99;
+   color: rgb(40, 40, 40);
+}
+.ol-attribution {
+   display: none;
+}
+
+/* La ventana emergente en el mapa */
+#info {
+	position: absolute;
+	height: 1px;
+	width: 1px;
+	z-index: 100;
+}
+.tooltip.in {
+	opacity: 1;
+}
+.tooltip .top .tooltip-arrow {
+	border-top-color: #903D99;
+}
+.tooltip-inner {
+	border: 2px solid #903D99;
+	background-color: #00419b;
+}
+
+/* El desplegable selector de estación meteorológica */
+.btn-estacion {
+	position: absolute;
+	top: 65px;
+	left: 45px;
+}
+
+/* La caja con el slider */
+#infos {
+	position: absolute;
+	bottom: 1em;
+	right: 1em;
+	padding: 4px 10x 2px 10px;
+	background: rgba(144, 61, 153, 0.8);
+	border: 1px solid rgb(200, 200, 200);
+	border-radius: 5px;
+	font-size: 16px;
+}
+#infos a {
+	font: 400 14px "helvetica",
+	sans-serif;
+	padding: 0 0.75em;
+	color: #ffe001;
+	text-decoration: none;
+}
+#infos a:hover {
+	color: white;
+}
+#day-label {
+	font: 400 14px "helvetica",
+	sans-serif;
+	right: 1em;
+	bottom: 1em;
+	color: rgb(200, 200, 200);
+	width: 100%;
+	text-align: center;
+	padding-bottom: 3px;
+	margin-top: 5px;
+}
+.ui-widget {
+	font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
+	font-size: 1.2em;
+}
+.ui-widget-content {
+	margin: 5px 10px 0px 10px;
+}
+.ui-slider-horizontal {
+	height: 0.6em;
+}
+
+
+/*****************************************************
+Estilo específico para las páginas de la estación 
+******************************************************/
+
+/* El título */
+.titulo {
+	position: absolute;
+	top: 65px;
+	left: 40px;
+}
+
+/* Aviso en el título */
+.prueba {
+        font-size: 22px;
+        font-weight: bold;
+        color:#F00; 
+        display: block; 
+        float: right; 
+        margin: 0px 30px 0px 30px;
+        z-index: 1000;
+        text-shadow: 0 1px 0 #ccc,
+         0 2px 0 #c9c9c9,
+         0 3px 0 #bbb,
+         0 4px 0 #b9b9b9,
+         0 5px 0 #aaa,
+         0 6px 1px rgba(0,0,0,.1),
+         0 0 5px rgba(0,0,0,.1),
+         0 1px 3px rgba(0,0,0,.3),
+         0 3px 5px rgba(0,0,0,.2),
+         0 5px 10px rgba(0,0,0,.25),
+         0 10px 10px rgba(0,0,0,.2),
+         0 20px 20px rgba(0,0,0,.15);
+}
+
+/* Las pestañas de la pagina de la estación */
+.tab-content {
+        margin-top:15px;
+}
+.nav-tabs > li > a:hover, .nav-tabs > li > a:focus, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .nav-tabs .open > a, .nav-tabs .open > a:hover, .nav-tabs .open > a:focus {
+    margin-top: 5px;
+}
+.nav-tabs > li > a{
+        border-width: 0px;
+}
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    border-width: 1px;
+    text-decoration: none;
+}
+.nav-tabs > li > a:hover {
+   background-color: #eeeeee;
+}
+
+/* Las tablas con las mediciones y las estadísticas de la estación */
+.table-striped tr th {
+        width: 25%;
+}
+.sunmoon tr th {
+        width: 33%;
+}
+.mitad tr th {
+        width: 50%;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857;
+    vertical-align: top;
+    border-top: 1px solid #DDD;
+    border-color: #DDD !important;
+    font-size: 14px;
+}
+
+/* Los gráficos y las imagenes de la estación */
+.img-thumbnail {
+    padding: 4px;
+    line-height: 1.42857;
+    background-color: #FFF;
+    border: 1px solid #DDD;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out 0s;
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+}
+.img-plot {
+    padding: 3px;
+    line-height: 1.42857;
+    background-color: #FFF;
+    border: 1px solid #DDD;
+    border-radius: 3px;
+    transition: all 0.2s ease-in-out 0s;
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 3px;
+}
+
+
+/* El footer de las páginas de la estación */
+.footer {
+  font-size: 12px;
+}
+
