@@ -5,7 +5,8 @@
  *
  * Sientate libre en usar lo que quieras, es software libre.
  */
-function meteomap() {
+
+$(function() {
 
 	// Seven day slider based off today, remember what today is
 	var today = new Date();
@@ -127,29 +128,47 @@ function meteomap() {
 		})
 	});
 
-
-
-	var estMeteoStyle = new ol.style.Style({
-		image: new ol.style.Circle({
-			radius: 6,
-			fill: new ol.style.Fill({
-				color: 'rgba(255, 32, 37, 1.0)'
-			}),
-			stroke: new ol.style.Stroke({
-				color: 'rgba(144, 61, 153, 0.8)',
-				width: 3
-			})
-		})
-	});
-
 	var estMeteo = new ol.layer.Vector({
 		source: new ol.source.Vector({
 			format: new ol.format.GeoJSON(),
-			url: '../../geoinfo/datoslibres/wfs?service=WFS&version=1.1.0&request=GetFeature&typename=clima_estacion&outputFormat=application/json&srsname=EPSG:4326'
+			url: '../../geoinfo/datoslibres/wfs?service=WFS&version=1.1.0&request=GetFeature&typename=meteo_estacion&outputFormat=application/json&srsname=EPSG:4326'
 		}),
-		style: estMeteoStyle
-	});
+		style: function(feature,resolution){
+			var activa = new ol.style.Style( {
+        			image: new ol.style.Circle( {
+            				radius: 6,
+            				fill: new ol.style.Fill( {
+               					 color: 'rgba(138, 202, 238, 0.8)'
+            				} ),
+					stroke: new ol.style.Stroke({
+						color: 'rgba(255, 224, 1, 0.8)',
+						width: 3
+	        			} )    
+})
+    			} );
 
+    			var inactiva = new ol.style.Style( {
+        			image: new ol.style.Circle( {
+            				radius: 3,
+            				fill: new ol.style.Fill( {
+                				color: 'rgba(255, 32, 37, 0.8)'
+            				} ),
+                                        stroke: new ol.style.Stroke({  
+                                                color: 'rgba(255, 224, 1, 0.8)',
+                                                width: 1
+                                        } )
+
+        			} )
+    			} );
+
+    			if ( feature.get('efu') == 'activa') {
+       				return [activa];
+    			} else {
+        			return [inactiva];
+    			}
+	}
+
+	});
 
 	update();
 
@@ -169,7 +188,7 @@ function meteomap() {
 		});
 		if (feature) {
 			info.tooltip('hide')
-				.attr('data-original-title', 'Estaci&oacute;n meteorol&oacute;gica:<br><b>' + feature.get('nam') + '</b>')
+				.attr('data-original-title', 'Estaci&oacute;n meteorol&oacute;gica:<br><b>' + feature.get('nam') + '</b><br>' +'<i>' + feature.get('efu') + '</i>')
 				.tooltip('fixTitle')
 				.tooltip('show');
 		} else {
@@ -191,7 +210,8 @@ function meteomap() {
 			return feature;
 		});
 		if (feature) {
-			window.open(feature.get('web'), "_self");
+			if (feature.get('efu')=='activa'){
+			window.open(feature.get('web'), "_self");}
 		}
 	};
 	map.on('click', function(evt) {
@@ -213,5 +233,5 @@ function meteomap() {
 			update();
 		}
 	});
-};
+});
 
